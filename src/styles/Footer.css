@@ -1,0 +1,21 @@
+/* Footer Styles */
+.footer {
+  background: #0f1419;
+  color: #e5e7eb;
+  text-align: center;
+  padding: 2rem;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.footer p:last-child {
+  margin-bottom: 0;
+}
