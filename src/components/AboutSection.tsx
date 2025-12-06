@@ -17,7 +17,7 @@ export default function AboutSection() {
             
             <h3>My Skills</h3>
             <div className="skills-grid">
-              <div className="skill-card">[Skill 1]</div>
+              <div className="skill-card">[Detail Oriented]</div>
               <div className="skill-card">[Skill 2]</div>
               <div className="skill-card">[Skill 3]</div>
               <div className="skill-card">[Skill 4]</div>
@@ -26,7 +26,9 @@ export default function AboutSection() {
             </div>
 
             <h3>Location</h3>
-            <p>[Your location if relevant]</p>
+            <p>- Based in Dasmariñas, Cavite, Philippines <br></br>
+              - Connected to the growing tech community in Calabarzon<br></br>
+              - Open to remote opportunities worldwide </p>
           </div>
         </div>
       </div>
