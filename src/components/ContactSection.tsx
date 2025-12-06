@@ -39,11 +39,11 @@ export default function ContactSection() {
             <h3>Contact Information</h3>
             <div className="info-item">
               <strong>Email:</strong>
-              <p><a href="mailto:your.email@example.com">[your.email@example.com]</a></p>
+              <p><a href="mailto:marloncopilot@gmail.com">[marloncopilot@gmail.com]</a></p>
             </div>
             <div className="info-item">
               <strong>Phone:</strong>
-              <p><a href="tel:+1234567890">[+1 (234) 567-8900]</a></p>
+              <p><a href="tel:+639948180273">[+63 994 818 0273]</a></p>
             </div>
             <div className="info-item">
               <strong>Location:</strong>

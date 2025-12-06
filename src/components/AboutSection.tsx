@@ -15,12 +15,22 @@ export default function AboutSection() {
             <h3>Who I Am</h3>
             <p>A quirked up asian boy who loves to code.</p>
             
-            <h3>My Skills</h3>
+            <h3>Soft Skills</h3>
             <div className="skills-grid">
               <div className="skill-card">[Detail Oriented]</div>
               <div className="skill-card">[Skill 2]</div>
               <div className="skill-card">[Skill 3]</div>
               <div className="skill-card">[Skill 4]</div>
+              <div className="skill-card">[Skill 5]</div>
+              <div className="skill-card">[Skill 6]</div>
+            </div>
+
+            <h3>Programming Knowledge</h3>
+            <div className="skills-grid">
+              <div className="skill-card">[HTML, CSS, PHP, JavaScript ]</div>
+              <div className="skill-card">[MONGO DB, EXPRESS.JS, REACT.JS, NODE.JS ]</div>
+              <div className="skill-card">[Python and its libraries]</div>
+              <div className="skill-card">[Java]</div>
               <div className="skill-card">[Skill 5]</div>
               <div className="skill-card">[Skill 6]</div>
             </div>
