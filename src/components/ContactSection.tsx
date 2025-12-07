@@ -5,8 +5,17 @@ import githubIcon from '../assets/icons/github.svg'
 import xIcon from '../assets/icons/x.svg'
 import facebookIcon from '../assets/icons/facebook.svg'
 
+// ✅ Define the type for formData
+type ContactFormData = {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
+  // ✅ Apply the type to useState
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     subject: '',
@@ -75,7 +84,7 @@ export default function ContactSection() {
                   width="100%"
                   height="300"
                   style={{ border: 0 }}
-                  allowFullScreen=""
+                  allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Dasmariñas, Cavite"
