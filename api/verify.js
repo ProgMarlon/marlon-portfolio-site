@@ -3,13 +3,16 @@ import Contact from '../lib/models/Contact.js';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
+// Cache connection across hot reloads / serverless invocations
+let cached = global.mongoose || { conn: null, promise: null };
+
 async function connectDB() {
-  if (mongoose.connection.readyState === 0) {
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+  if (cached.conn) return cached.conn;
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI);
   }
+  cached.conn = await cached.promise;
+  return cached.conn;
 }
 
 export default async function handler(req, res) {
