@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Contact from '../lib/models/Contact.js';
+import Contact from '../server/models/Contact.js';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 
