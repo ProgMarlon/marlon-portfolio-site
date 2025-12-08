@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Contact from '../server/config/models/Contact.js';
+import Contact from '../server/models/Contact.js'; 
 import nodemailer from 'nodemailer';
 
 const MONGODB_URI = process.env.MONGODB_URI;
