@@ -26,6 +26,11 @@ async function initializeTransporter() {
         sendMail: async (msg) => {
           try {
             const fromEmail = msg.from || process.env.RESEND_FROM_EMAIL || 'hello@marlonisaguirre.site';
+              console.log('Contact form payload:', {
+                to: msg.to,
+                from: fromEmail,
+                subject: msg.subject,
+            });
             console.log(`📧 Sending via Resend from: ${fromEmail} to: ${msg.to}`);
             const result = await resend.emails.send({
               from: fromEmail,
