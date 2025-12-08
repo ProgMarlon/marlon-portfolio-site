@@ -6,10 +6,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 async function connectDB() {
   if (mongoose.connection.readyState >= 1) return;
-  return mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  return mongoose.connect(MONGODB_URI);
 }
 
 export default async function handler(req, res) {
