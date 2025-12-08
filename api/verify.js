@@ -4,11 +4,19 @@ import Contact from '../../server/models/Contact.js';
 const MONGODB_URI = process.env.MONGODB_URI;
 
 async function connectDB() {
-  if (mongoose.connection.readyState >= 1) return;
-  return mongoose.connect(MONGODB_URI);
+  if (mongoose.connection.readyState === 0) {
+    await mongoose.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+  }
 }
 
 export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).send('Method Not Allowed');
+  }
+
   const { token } = req.query;
 
   try {
@@ -37,8 +45,8 @@ export default async function handler(req, res) {
       <h2>Email Verified ✅</h2>
       <p>Thank you, ${contact.name}. Your email is now confirmed.</p>
     `);
-  } catch (err) {
-    console.error('✗ Verification error:', err);
+  } catch (error) {
+    console.error('✗ Verification error:', error);
     return res.status(500).send(`
       <h2>Server Error</h2>
       <p>Something went wrong. Please try again later.</p>
