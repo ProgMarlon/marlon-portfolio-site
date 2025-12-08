@@ -38,7 +38,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173', // Vite dev server
     'http://localhost:3000',
-    'https://yourdomain.com', // Production URL (update this)
+    'https://marlonisaguirre.site', // Production URL (update this)
   ],
   credentials: true,
 }));
