@@ -14,11 +14,17 @@ export default async function handler(req, res) {
   try {
     await connectDB();
 
+    if (!token || typeof token !== 'string') {
+      return res
+        .status(400)
+        .send(`<h2>Invalid verification link</h2><p>Please check your email and try again.</p>`);
+    }
+
     const contact = await Contact.findOne({ verifyToken: token });
     if (!contact) {
       return res
-        .status(400)
-        .send(`<h2>Invalid or expired token</h2><p>Please try submitting the form again.</p>`);
+        .status(404)
+        .send(`<h2>Token not found</h2><p>This link may have expired or already been used.</p>`);
     }
 
     contact.verified = true;
@@ -32,6 +38,6 @@ export default async function handler(req, res) {
     console.error('✗ Verification error:', err);
     return res
       .status(500)
-      .send(`<h2>Server Error</h2><p>${err.message}</p>`);
+      .send(`<h2>Server Error</h2><p>Something went wrong. Please try again later.</p>`);
   }
 }
