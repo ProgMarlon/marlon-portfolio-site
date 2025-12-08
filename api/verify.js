@@ -15,29 +15,33 @@ export default async function handler(req, res) {
     await connectDB();
 
     if (!token || typeof token !== 'string') {
-      return res
-        .status(400)
-        .send(`<h2>Invalid verification link</h2><p>Please check your email and try again.</p>`);
+      return res.status(400).send(`
+        <h2>Invalid verification link</h2>
+        <p>Please check your email and try again.</p>
+      `);
     }
 
     const contact = await Contact.findOne({ verifyToken: token });
     if (!contact) {
-      return res
-        .status(404)
-        .send(`<h2>Token not found</h2><p>This link may have expired or already been used.</p>`);
+      return res.status(404).send(`
+        <h2>Token not found</h2>
+        <p>This link may have expired or already been used.</p>
+      `);
     }
 
     contact.verified = true;
     contact.verifyToken = null;
     await contact.save();
 
-    return res
-      .status(200)
-      .send(`<h2>Email verified successfully!</h2><p>Thank you, ${contact.name}. Your email is now confirmed.</p>`);
+    return res.status(200).send(`
+      <h2>Email Verified ✅</h2>
+      <p>Thank you, ${contact.name}. Your email is now confirmed.</p>
+    `);
   } catch (err) {
     console.error('✗ Verification error:', err);
-    return res
-      .status(500)
-      .send(`<h2>Server Error</h2><p>Something went wrong. Please try again later.</p>`);
+    return res.status(500).send(`
+      <h2>Server Error</h2>
+      <p>Something went wrong. Please try again later.</p>
+    `);
   }
 }
