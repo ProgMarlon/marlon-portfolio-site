@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
-import Contact from '../server/models/Contact.js'; 
+import Contact from '../server/models/Contact.js';
 import nodemailer from 'nodemailer';
+import crypto from 'crypto';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -23,7 +24,18 @@ export default async function handler(req, res) {
   try {
     await connectDB();
 
-    const newContact = new Contact({ name, email, subject, message });
+    // Generate a unique verification token
+    const token = crypto.randomBytes(32).toString('hex');
+
+    // Save contact with token + verified=false
+    const newContact = new Contact({
+      name,
+      email,
+      subject,
+      message,
+      verifyToken: token,
+      verified: false,
+    });
     await newContact.save();
 
     const transporter = nodemailer.createTransport({
@@ -36,6 +48,7 @@ export default async function handler(req, res) {
       },
     });
 
+    // Admin notification
     await transporter.sendMail({
       from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
       to: process.env.EMAIL_USER || 'marloncopilot@gmail.com',
@@ -51,11 +64,12 @@ export default async function handler(req, res) {
       `,
     });
 
+    // User auto-response with verification link
     await transporter.sendMail({
       from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
       to: email,
       replyTo: process.env.EMAIL_USER || 'marloncopilot@gmail.com',
-      subject: 'We received your message!',
+      subject: 'Please verify your email',
       html: `
         <h2>Thank you for reaching out, ${name}!</h2>
         <p>We have received your message and will get back to you as soon as possible.</p>
@@ -64,16 +78,20 @@ export default async function handler(req, res) {
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
         <hr>
+        <p>To confirm your email, please click the link below:</p>
+        <p><a href="https://marlonisaguirre.site/api/verify?token=${token}">Verify Email</a></p>
+        <hr>
         <p>Best regards,<br>Marlon C. Isaguirre Jr.</p>
       `,
     });
 
-    console.log('✓ Contact saved and emails sent');
+    console.log('✓ Contact saved, verification email sent');
 
+    // Important: do not imply full success until verified
     return res.status(201).json({
       success: true,
-      message: 'Message sent successfully! Check your email for confirmation.',
-      data: newContact,
+      message: 'Message received. Please check your email to verify ownership.',
+      data: { id: newContact._id, verified: newContact.verified },
     });
   } catch (error) {
     console.error('✗ Contact form error:', error);

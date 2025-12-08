@@ -32,12 +32,20 @@ const contactSchema = new mongoose.Schema(
       enum: ['unread', 'read', 'responded'],
       default: 'unread',
     },
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+    verifyToken: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const Contact = mongoose.model('Contact', contactSchema);
+const Contact = mongoose.models.Contact || mongoose.model('Contact', contactSchema);
 
 export default Contact;
