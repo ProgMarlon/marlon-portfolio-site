@@ -79,6 +79,7 @@ export default function ContactSection() {
             <div className="info-item">
               <strong>📍 Location:</strong>
               <div className="location-map">
+                <p>Dasmariñas, Cavite, Philippines</p>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d123723.61961435794!2d121.0104661!3d14.2903226!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d5b87c111e25%3A0xab8cb698f840321f!2sDasmari%C3%B1as%2C%20Cavite!5e0!3m2!1sen!2sph!4v1765126831453!5m2!1sen!2sph"
                   width="100%"
@@ -163,7 +164,7 @@ export default function ContactSection() {
             </div>
 
             <button type="submit" className="submit-button">Send Message</button>
-            {submitted && <p className="success-message">Message sent successfully!</p>}
+            {submitted && <p className="success-message">Message sent successfully!<br>Please verify your email. Check your inbox or spam section.</br></p>}
           </form>
         </div>
       </div>
