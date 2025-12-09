@@ -46,6 +46,11 @@ export default async function handler(req, res) {
         user: 'resend',
         pass: process.env.RESEND_API_KEY,
       },
+      pool: true,          // enables connection pooling
+    rateLimit: 2,        // limit to 2 messages per second
+    maxConnections: 5,   // optional: number of simultaneous connections
+    maxMessages: 100     // optional: messages per connection
+
     });
 
     // Admin notification
