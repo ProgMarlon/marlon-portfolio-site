@@ -55,7 +55,10 @@ export default async function handler(req, res) {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
+    // Limit history to last 10 messages to stay within free tier token limits
+    const limitedHistory = (history || []).slice(-10);
 
     const chat = model.startChat({
       history: [
@@ -67,18 +70,19 @@ export default async function handler(req, res) {
           role: "model",
           parts: [{ text: "Understood. I am ready to assist visitors as MarlonBot." }],
         },
-        ...(history || []).map(msg => ({
+        ...limitedHistory.map(msg => ({
           role: msg.sender === 'user' ? 'user' : 'model',
           parts: [{ text: msg.text }]
         }))
       ],
       generationConfig: {
-        maxOutputTokens: 200,
+        maxOutputTokens: 250,
+        temperature: 0.7,
       },
     });
 
     const result = await chat.sendMessage(message);
-    const response = await result.response;
+    const response = result.response;
     const text = response.text();
 
     return res.status(200).json({ success: true, reply: text });
