@@ -12,6 +12,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.floating-object-container.chat-open {
+  z-index: 10001;
+  bottom: 435px; /* Sits perfectly on the chat window header */
+  right: 15px;
+  width: 90px;
+}
+
+.floating-object-container.chat-open .floating-label {
+  display: none;
 }
 
 .floating-pc {
@@ -126,6 +138,12 @@
     right: 20px;
   }
   
+  .floating-object-container.chat-open {
+    bottom: 375px; /* Adjusted for mobile chat height */
+    right: 10px;
+    width: 70px;
+  }
+
   .speech-bubble {
     width: 180px;
     font-size: 1.2rem;

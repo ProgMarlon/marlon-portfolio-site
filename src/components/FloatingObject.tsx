@@ -12,7 +12,7 @@ export default function FloatingObject() {
 
   return (
     <>
-      <div className="floating-object-container">
+      <div className={`floating-object-container ${isOpen ? 'chat-open' : ''}`}>
         <div className="floating-label">AI Chatbot</div>
         <img 
           src={pcGif} 
