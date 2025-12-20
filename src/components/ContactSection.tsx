@@ -81,15 +81,18 @@ export default function ContactSection() {
               <div className="location-map">
                 <p>Dasmariñas, Cavite, Philippines</p>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d123723.61961435794!2d121.0104661!3d14.2903226!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d5b87c111e25%3A0xab8cb698f840321f!2sDasmari%C3%B1as%2C%20Cavite!5e0!3m2!1sen!2sph!4v1765126831453!5m2!1sen!2sph"
                   width="100%"
                   height="300"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=120.8864%2C14.2796%2C120.9864%2C14.3796&amp;layer=mapnik&amp;marker=14.3296%2C120.9364"
                   style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
                   title="Dasmariñas, Cavite"
                 ></iframe>
+                <br />
+                <small>
+                  <a href="https://www.openstreetmap.org/?mlat=14.3296&amp;mlon=120.9364#map=13/14.3296/120.9364" target="_blank" rel="noopener noreferrer" style={{ color: '#3b82f6' }}>
+                    View Larger Map
+                  </a>
+                </small>
               </div>
             </div>
 

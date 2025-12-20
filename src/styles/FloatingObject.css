@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.floating-object-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  width: 120px;
+  height: auto;
+  pointer-events: none; /* Allows clicking items behind the container area */
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.3));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.floating-pc {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  pointer-events: auto; /* Re-enable clicks on the image itself */
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.floating-pc:active {
+  transform: scale(0.95);
+}
+
+.speech-bubble {
+  position: absolute;
+  bottom: 100%; /* Position above the image */
+  right: 20px;
+  background-color: #ffffff;
+  color: #1a1f2e;
+  padding: 1rem;
+  border-radius: 4px; /* Sharper corners for pixel feel */
+  border: 4px solid #1a1f2e; /* Thicker, darker border for retro feel */
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2); /* Retro shadow */
+  margin-bottom: 15px;
+  width: 220px;
+  font-family: 'VT323', monospace; /* Pixel font */
+  font-size: 1.4rem; /* Larger for readability */
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: auto;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  right: 24px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #1a1f2e; /* Match border */
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 26px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #ffffff;
+  z-index: 1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Hide on very small screens if it obstructs view, or just shrink it */
+@media (max-width: 768px) {
+  .floating-object-container {
+    width: 80px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .speech-bubble {
+    width: 180px;
+    font-size: 1.2rem;
+    right: 0;
+  }
+}

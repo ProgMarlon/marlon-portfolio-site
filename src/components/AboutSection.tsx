@@ -13,26 +13,26 @@ export default function AboutSection() {
           
           <div className="about-text">
             <h3>Who I Am</h3>
-            <p>A quirked up asian boy who loves to code.</p>
+            <p>Web Developer and BSIT student specializing in the MERN stack and Python. I build high-performance, accessible web applications, recently achieving a 20% reduction in load times through workflow optimization. I focus on bridging technical complexity with intuitive, user-centric experiences.</p>
             
-            <h3>Soft Skills</h3>
+            <h3>Core Competencies</h3>
             <div className="skills-grid">
-              <div className="skill-card">[Detail Oriented]</div>
-              <div className="skill-card">[Skill 2]</div>
-              <div className="skill-card">[Skill 3]</div>
-              <div className="skill-card">[Skill 4]</div>
-              <div className="skill-card">[Skill 5]</div>
-              <div className="skill-card">[Skill 6]</div>
+              <div className="skill-card">Analytical Thinking</div>
+              <div className="skill-card">Detail Oriented</div>
+              <div className="skill-card">Process-Driven Development</div>
+              <div className="skill-card">Problem Solving</div>
+              <div className="skill-card">Collaborative Teamwork</div>
+              <div className="skill-card">Effective Communication</div>
             </div>
 
-            <h3>Programming Knowledge</h3>
+            <h3>Technical Expertise</h3>
             <div className="skills-grid">
-              <div className="skill-card">[HTML, CSS, PHP, JavaScript ]</div>
-              <div className="skill-card">[MONGO DB, EXPRESS.JS, REACT.JS, NODE.JS ]</div>
-              <div className="skill-card">[Python and its libraries]</div>
-              <div className="skill-card">[Java]</div>
-              <div className="skill-card">[Skill 5]</div>
-              <div className="skill-card">[Skill 6]</div>
+              <div className="skill-card">MERN Stack (MongoDB, Express, React, Node.js)</div>
+              <div className="skill-card">Python & Data Libraries</div>
+              <div className="skill-card">JavaScript (ES6+) & TypeScript</div>
+              <div className="skill-card">Responsive HTML5 & CSS3</div>
+              <div className="skill-card">PHP & MySQL Database Management</div>
+              <div className="skill-card">RESTful API Integration & Git</div>
             </div>
 
             <h3>Location</h3>

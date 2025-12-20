@@ -2,7 +2,7 @@ import '../styles/HeroSection.css'
 
 export default function HeroSection() {
   return (
-    <section className="hero">
+    <section id="home" className="hero">
       <div className="hero-content">
         <h1>Hi, I'm Marlon C. Isaguirre Jr.</h1>
         <p className="tagline">Programming stuff, one line at a time.</p>

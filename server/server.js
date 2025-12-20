@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import contactRoutes from './routes/contactRoutes.js';
+import chatRoutes from './routes/chatRoutes.js';
 
 // Get __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -48,6 +49,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 // Routes
 app.use('/api', contactRoutes);
+app.use('/api', chatRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

@@ -1,45 +1,61 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/Navigation.css'
 
-interface NavigationProps {
-  activeSection: string
-  setActiveSection: (section: string) => void
-}
-
-export default function Navigation({ activeSection, setActiveSection }: NavigationProps) {
+export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   const sections = ['home', 'about', 'projects', 'services', 'testimonials', 'resume', 'contact']
 
-  const handleNavClick = (section: string) => {
-    setActiveSection(section)
-    setMenuOpen(false)
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionElements = document.querySelectorAll('section')
+      let current = 'home'
+
+      sectionElements.forEach((section) => {
+        const sectionTop = section.offsetTop
+        // 100px offset for the sticky header
+        if (window.scrollY >= sectionTop - 100) {
+          current = section.getAttribute('id') || 'home'
+        }
+      })
+      setActiveSection(current)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <div className="nav-logo">
+        <a href="#home" className="nav-logo">
           <span>Marlon C. Isaguirre Jr.</span>
-        </div>
+        </a>
         
         <div className={`nav-menu ${menuOpen ? 'active' : ''}`}>
           {sections.map((section) => (
             <a
               key={section}
+              href={`#${section}`}
               className={`nav-link ${activeSection === section ? 'active' : ''}`}
-              onClick={() => handleNavClick(section)}
+              onClick={() => setMenuOpen(false)}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
           ))}
         </div>
 
-        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <button 
+          className="hamburger" 
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+        >
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </button>
       </div>
     </nav>
   )
