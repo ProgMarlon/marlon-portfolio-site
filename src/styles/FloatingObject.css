@@ -15,15 +15,10 @@
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.floating-object-container.chat-open {
-  z-index: 10001;
-  bottom: 435px; /* Sits perfectly on the chat window header */
-  right: 15px;
-  width: 90px;
-}
-
-.floating-object-container.chat-open .floating-label {
-  display: none;
+.floating-object-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
 }
 
 .floating-pc {
@@ -140,7 +135,7 @@
   
   .floating-object-container.chat-open {
     bottom: 375px; /* Adjusted for mobile chat height */
-    right: 10px;
+    right: 30px; /* Moved left (was 10px) */
     width: 70px;
   }
 
