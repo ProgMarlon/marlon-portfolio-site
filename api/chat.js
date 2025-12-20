@@ -55,7 +55,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     // Limit history to last 10 messages to stay within free tier token limits
     const limitedHistory = (history || []).slice(-10);
@@ -82,7 +82,7 @@ export default async function handler(req, res) {
     });
 
     const result = await chat.sendMessage(message);
-    const response = result.response;
+    const response = await result.response;
     const text = response.text();
 
     return res.status(200).json({ success: true, reply: text });
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Chat API Error:', error);
     
-    let userMessage = 'Sorry, I am having trouble connecting to my brain right now.';
+    let userMessage = `Error: ${error.message}`;
     if (error.message.includes('429')) {
       userMessage = 'I am receiving too many requests! Please wait a minute and try again.';
     }
