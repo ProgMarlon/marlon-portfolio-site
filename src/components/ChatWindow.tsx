@@ -13,12 +13,36 @@ interface Message {
 }
 
 export default function ChatWindow({ onClose }: ChatWindowProps) {
-  const [messages, setMessages] = useState<Message[]>([
-    { id: 1, text: "Hi! I'm MarBot2000, Marlon's virtual assistant. Ask me about his skills, projects, or how to contact him!", sender: 'bot' }
-  ])
+  const [messages, setMessages] = useState<Message[]>(() => {
+    // Load messages from localStorage on initialization
+    const saved = localStorage.getItem('marbot_messages');
+    return saved ? JSON.parse(saved) : [
+      { id: 1, text: "Hi! I'm MarBot2000, Marlon's virtual assistant. Ask me about his skills, projects, or how to contact him!", sender: 'bot' }
+    ];
+  })
   const [inputText, setInputText] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const chatRef = useRef<HTMLDivElement>(null)
+
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('marbot_messages', JSON.stringify(messages));
+  }, [messages]);
+
+  // Handle click outside to close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (chatRef.current && !chatRef.current.contains(event.target as Node)) {
+        // Optional: you can choose to close it here, or just ensure focus isn't lost.
+        // Given your issue, closing it might be the cleanest UX fix.
+        onClose();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [onClose]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -105,13 +129,22 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
   ]
 
   return (
-    <div className="chat-window">
+    <div className="chat-window" ref={chatRef}>
       <div className="chat-header">
         <div className="chat-header-content">
           <img src={pcGif} alt="" className="chat-header-gif" />
           <span className="chat-title">MarBot2000</span>
         </div>
-        <button onClick={onClose} className="close-btn" aria-label="Close Chat">×</button>
+        <button 
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent trigger 'handleClickOutside'
+            onClose();
+          }} 
+          className="close-btn" 
+          aria-label="Close Chat"
+        >
+          ×
+        </button>
       </div>
       
       <div className="chat-messages">
@@ -145,7 +178,6 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
             onChange={(e) => setInputText(e.target.value)}
             placeholder="Ask MarBot2000..."
           />
-          <button type="submit" className="send-btn">Send</button>
         </form>
         <p className="ai-disclaimer">MarBot2000 may provide AI-generated content. Verify important details.</p>
       </div>
