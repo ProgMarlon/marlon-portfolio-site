@@ -21,11 +21,38 @@
   cursor: pointer;
   pointer-events: auto; /* Re-enable clicks on the image itself */
   animation: float 4s ease-in-out infinite;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-object-container:hover .floating-pc {
+  transform: scale(1.1);
+}
+
+.floating-label {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 5px;
+  background-color: #3b82f6;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.floating-object-container:hover .floating-label {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .floating-pc:active {
-  transform: scale(0.95);
+  transform: scale(0.95) !important;
 }
 
 .speech-bubble {
