@@ -86,7 +86,7 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
         console.error('Chat Error:', error);
         const errorMessage: Message = {
           id: Date.now() + 1,
-          text: "Sorry, I'm having trouble connecting to the server. Please check if the backend is running.",
+          text: `Error: ${error.message}. Please check your internet or if the site is still deploying.`,
           sender: 'bot'
         }
         setMessages(prev => [...prev, errorMessage])
