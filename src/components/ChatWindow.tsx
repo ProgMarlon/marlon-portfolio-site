@@ -135,16 +135,20 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
           <img src={pcGif} alt="" className="chat-header-gif" />
           <span className="chat-title">MarBot2000</span>
         </div>
-        <button 
-          onClick={(e) => {
-            e.stopPropagation(); // Prevent trigger 'handleClickOutside'
+        <div 
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation(); 
             onClose();
           }} 
-          className="close-btn" 
-          aria-label="Close Chat"
+          className="win-close-btn" 
+          role="button"
+          tabIndex={0}
+          aria-label="Close"
+          style={{ zIndex: 1000, position: 'relative' }} // Force z-index
         >
           ×
-        </button>
+        </div>
       </div>
       
       <div className="chat-messages">
