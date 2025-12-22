@@ -106,7 +106,7 @@ export default function ContactSection() {
                 <img src={githubIcon} alt="GitHub" className="social-icon" />
                 GitHub
               </a>
-              <a href="#" className="social-link">
+              <a href="https://x.com/MarBot2000" target="_blank" rel="noopener noreferrer" className="social-link">
                 <img src={xIcon} alt="X" className="social-icon" />
                 X
               </a>

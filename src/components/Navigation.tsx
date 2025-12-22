@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import '../styles/Navigation.css'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -13,7 +14,7 @@ export default function Navigation() {
       let current = 'home'
 
       sectionElements.forEach((section) => {
-        const sectionTop = section.offsetTop
+        const sectionTop = (section as HTMLElement).offsetTop
         // 100px offset for the sticky header
         if (window.scrollY >= sectionTop - 100) {
           current = section.getAttribute('id') || 'home'
@@ -44,18 +45,26 @@ export default function Navigation() {
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
           ))}
+          <div className="nav-toggle-wrapper desktop-only">
+            <ThemeToggle />
+          </div>
         </div>
 
-        <button 
-          className="hamburger" 
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle navigation menu"
-          aria-expanded={menuOpen}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div className="nav-actions">
+          <div className="mobile-only">
+            <ThemeToggle />
+          </div>
+          <button 
+            className="hamburger" 
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </nav>
   )

@@ -1,9 +1,10 @@
 /* Footer Styles */
 .footer {
-  background: #0f1419;
-  color: #e5e7eb;
+  background-color: var(--bg-color);
+  color: var(--text-muted);
+  padding: 4rem 1.5rem;
   text-align: center;
-  padding: 2rem;
+  border-top: 1px solid var(--border-color);
 }
 
 .footer .container {
@@ -12,10 +13,11 @@
 }
 
 .footer p {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.footer p:last-child {
-  margin-bottom: 0;
+.footer .copyright {
+  font-weight: 600;
+  color: var(--text-color);
 }

@@ -1,4 +1,5 @@
 import '../styles/AboutSection.css'
+import profilePhoto from '../assets/marlon-profile.jpg'
 
 export default function AboutSection() {
   return (
@@ -8,7 +9,7 @@ export default function AboutSection() {
         
         <div className="about-content">
           <div className="about-image">
-            <div className="image-placeholder">[Professional Photo]</div>
+            <img src={profilePhoto} alt="Marlon C. Isaguirre Jr." className="profile-img" />
           </div>
           
           <div className="about-text">
@@ -34,11 +35,6 @@ export default function AboutSection() {
               <div className="skill-card">PHP & MySQL Database Management</div>
               <div className="skill-card">RESTful API Integration & Git</div>
             </div>
-
-            <h3>Location</h3>
-            <p>- Based in Dasmariñas, Cavite, Philippines <br></br>
-              - Connected to the growing tech community in Calabarzon<br></br>
-              - Open to remote opportunities worldwide </p>
           </div>
         </div>
       </div>

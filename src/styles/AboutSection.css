@@ -1,52 +1,57 @@
 /* About Section Styles */
 .about {
-  padding: 80px 2rem;
-  background-color: #0f1419;
+  padding: 100px 1.5rem;
+  background-color: var(--card-bg);
+  transition: var(--transition-smooth);
 }
 
 .about .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .about h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+  font-size: 3rem;
+  margin-bottom: 4rem;
   text-align: center;
-  color: #e5e7eb;
-  font-weight: 700;
+  color: var(--text-color);
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .about-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
 }
 
 .about-image {
-  text-align: center;
+  position: sticky;
+  top: 100px;
 }
 
-.image-placeholder {
-  background: #3b82f6;
+.profile-img {
   width: 100%;
-  aspect-ratio: 1;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 500;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--bg-color);
+  transition: var(--transition-smooth);
+}
+
+.profile-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .about-text h3 {
   font-size: 1.8rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  color: #e5e7eb;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-weight: 700;
 }
 
 .about-text h3:first-child {
@@ -54,70 +59,63 @@
 }
 
 .about-text p {
-  color: #d1d5db;
+  color: var(--text-muted);
   line-height: 1.8;
-  margin-bottom: 1rem;
-  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
 }
 
 .skill-card {
-  background: #1e293b;
-  padding: 1.5rem;
-  border-radius: 10px;
+  background: var(--bg-color);
+  padding: 1.25rem;
+  border-radius: 12px;
   text-align: center;
   font-weight: 600;
-  color: #3b82f6;
-  border: 2px solid #3b82f6;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-sm);
 }
 
 .skill-card:hover {
-  background: #3b82f6;
-  color: white;
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Mobile Responsive */
-@media (max-width: 768px) {
-  .about {
-    padding: 60px 1rem;
-  }
-
-  .about h2 {
-    font-size: 2rem;
-  }
-
+@media (max-width: 992px) {
   .about-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
   }
-
-  .skills-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-  }
-
-  .skill-card {
-    padding: 1rem;
-    font-size: 0.9rem;
-  }
-
-  .about-text h3 {
-    font-size: 1.5rem;
+  
+  .about-image {
+    position: static;
+    max-width: 400px;
+    margin: 0 auto;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .about {
+    padding: 80px 1rem;
+  }
+
+  .about h2 {
+    font-size: 2.25rem;
+  }
+
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

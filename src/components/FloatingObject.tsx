@@ -16,17 +16,18 @@ export default function FloatingObject() {
         <div className="floating-label">AI Chatbot</div>
         <img 
           src={pcGif} 
-          alt="Chat with Marlon's Bot" 
+          alt="Open MarBot2000 AI Assistant" 
           className="floating-pc"
           onClick={toggleChat}
           role="button"
           tabIndex={0}
+          aria-label="Open AI Chatbot"
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               toggleChat()
             }
           }}
-          title="Click to chat!"
+          title="Click to chat with MarBot2000!"
         />
       </div>
       {isOpen && <ChatWindow onClose={() => setIsOpen(false)} />}

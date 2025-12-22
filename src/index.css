@@ -1,4 +1,49 @@
-/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=VT323&display=swap');
+
+/* Global Styles & Variables */
+:root {
+  /* Color Palette - Modern & Accessible (WCAG AA Compliant) */
+  --primary-color: #2563eb;    /* Improved Blue for contrast */
+  --secondary-color: #059669;  /* Improved Green for contrast */
+  --accent-color: #d97706;     /* Improved Amber for contrast */
+  --bg-color: #ffffff;
+  --text-color: #1f2937;       /* Slate 800 */
+  --text-muted: #4b5563;       /* Slate 600 */
+  --border-color: #e5e7eb;     /* Gray 200 */
+  --card-bg: #f9fafb;          /* Gray 50 */
+  
+  /* Typography */
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'VT323', monospace;
+  
+  /* Spacing & Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Accessibility: Focus Styles */
+:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Theme Transitions */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Variables */
+[data-theme='dark'] {
+  --bg-color: #0f172a;         /* Slate 900 */
+  --text-color: #f8fafc;       /* Slate 50 */
+  --text-muted: #94a3b8;       /* Slate 400 */
+  --border-color: #334155;     /* Slate 700 */
+  --card-bg: #1e293b;          /* Slate 800 */
+  --primary-color: #60a5fa;    /* Lighter Blue for contrast */
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -9,104 +54,57 @@ html {
   box-sizing: border-box;
 }
 
-:root {
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: dark;
-  color: #e5e7eb;
-  background-color: #0f1419;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: auto;
-  background-color: #0f1419;
-  color: #e5e7eb;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
   font-size: 16px;
-  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+h1, h2, h3, h4 {
+  color: var(--text-color);
   line-height: 1.2;
-  margin: 0;
-  color: #e5e7eb;
+  margin-bottom: 1rem;
 }
 
-/* Links */
 a {
-  color: #3b82f6;
+  color: var(--primary-color);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: var(--transition-smooth);
 }
 
 a:hover {
-  color: #60a5fa;
+  opacity: 0.8;
 }
 
-/* Buttons */
 button {
   font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-/* Images */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Form Elements */
-input,
-textarea,
-select {
-  font-family: inherit;
-  font-size: 1rem;
-}
-
-/* Responsive Typography */
-@media (max-width: 768px) {
-  :root {
-    font-size: 14px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
+/* Base Accessibility Classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  * {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
